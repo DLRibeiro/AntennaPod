@@ -185,7 +185,8 @@ public class ItemFragment extends Fragment implements OnSwipeGesture {
             txtvTitle.setEllipsize(TextUtils.TruncateAt.END);
         }
         webvDescription = (WebView) layout.findViewById(R.id.webvDescription);
-        if (UserPreferences.getTheme() == R.style.Theme_AntennaPod_Dark) {
+        if (UserPreferences.getTheme() == R.style.Theme_AntennaPod_Dark ||
+                UserPreferences.getTheme() == R.style.Theme_AntennaPod_TrueBlack) {
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
                 webvDescription.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
             }
@@ -435,7 +436,7 @@ public class ItemFragment extends Fragment implements OnSwipeGesture {
         }
 
         FeedItem.State state = item.getState();
-        if (butAction2Text == R.string.delete_label && state == FeedItem.State.PLAYING) {
+        if (butAction2Text == R.string.delete_label && state == FeedItem.State.PLAYING && PlaybackService.isRunning) {
             butAction2.setEnabled(false);
             butAction2.setAlpha(0.5f);
         } else {
